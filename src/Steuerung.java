@@ -1,19 +1,26 @@
 
 public class Steuerung {
 
-	static Spieler spieler[] = new Spieler[2];
+	Spieler []spieler = new Spieler[2];
+	int aZustand, aktiverSpieler;
+	
 	
 	Steuerung(){
 		
 	}
-	
 
-	boolean gedruecktStart(){
-		spieler[1] = new Spieler();
-		spieler[2] = new Spieler();
+	void gedruecktStart(String name1,String name2, int Modi){
+		spieler[0] = new Spieler(name1);
+		spieler[1] = new Spieler(name2);
 		
+		aZustand = Modi;
 		
-		return true;
+	}
+	void Spielroutine() {
+		
 	}
 	
+	void zugFertig(String Antwort) {
+		
+	}
 }
