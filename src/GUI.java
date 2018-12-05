@@ -61,7 +61,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 500, 560);
+		frame.setBounds(100, 100, 500, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -157,32 +157,32 @@ public class GUI {
 		btnNewButton.setBounds(10, 224, 444, 31);
 		panel.add(btnNewButton);
 		
-		lblAktSpieler = new JLabel("");
-		lblAktSpieler.setBounds(20, 300, 46, 14);
+		lblAktSpieler = new JLabel("SpielerNr");
+		lblAktSpieler.setBounds(357, 300, 23, 14);
 		frame.getContentPane().add(lblAktSpieler);
 		
 		JLabel lblIstAmZug = new JLabel("ist am Zug");
-		lblIstAmZug.setBounds(162, 300, 84, 14);
+		lblIstAmZug.setBounds(390, 300, 84, 14);
 		frame.getContentPane().add(lblIstAmZug);
 		
 		JLabel lbltxtAufgabe = new JLabel("Aufgabe:");
-		lbltxtAufgabe.setBounds(20, 351, 80, 14);
+		lbltxtAufgabe.setBounds(10, 320, 80, 14);
 		frame.getContentPane().add(lbltxtAufgabe);
 		
 		JLabel lblBildeEinWort = new JLabel("Bilde ein Wort aus:");
-		lblBildeEinWort.setBounds(30, 376, 125, 14);
+		lblBildeEinWort.setBounds(20, 345, 125, 14);
 		frame.getContentPane().add(lblBildeEinWort);
 		
-		lblAufgabe = new JLabel("sdg");
-		lblAufgabe.setBounds(162, 376, 46, 14);
+		lblAufgabe = new JLabel("Aufgabe");
+		lblAufgabe.setBounds(152, 345, 46, 14);
 		frame.getContentPane().add(lblAufgabe);
 		
 		JLabel lblDeineLsung = new JLabel("Deine L\u00F6sung ");
-		lblDeineLsung.setBounds(31, 431, 90, 14);
+		lblDeineLsung.setBounds(15, 374, 90, 14);
 		frame.getContentPane().add(lblDeineLsung);
 		
 		textAntwort = new JTextField();
-		textAntwort.setBounds(131, 428, 147, 20);
+		textAntwort.setBounds(115, 371, 147, 20);
 		frame.getContentPane().add(textAntwort);
 		textAntwort.setColumns(10);
 		
@@ -192,8 +192,12 @@ public class GUI {
 				steuerung.zugFertig(textAntwort.getText());
 			}
 		});
-		btnFertig.setBounds(307, 427, 89, 23);
+		btnFertig.setBounds(291, 370, 89, 23);
 		frame.getContentPane().add(btnFertig);
+		
+		JLabel lblSpieler_1 = new JLabel("Spieler");
+		lblSpieler_1.setBounds(314, 300, 46, 14);
+		frame.getContentPane().add(lblSpieler_1);
 
 	}
 }
