@@ -1,18 +1,21 @@
-
 public class WortMitLücke extends Wort {
 
+	WortMitLücke(String wort) {
+		super();
+		this.aWort = wort;
+	}
+
 	String gibBuchstaben() {
-		String Lücke="";
-			
+		String Lücke = "";
+
 		Lücke = machLücke();
-		
+
 		return Lücke;
 	}
-	
-	String machLücke(){
-		//Todo
-		
-		
+
+	String machLücke() {
+		// Todo
+
 		return aWort;
 	}
 

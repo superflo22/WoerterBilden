@@ -4,6 +4,10 @@ public abstract class Wort {
 	String aWort;
 	int aStatus;
 	
+	Wort(){
+		
+		
+	}
 	
 	void stzeStausAufNie(){};
 	

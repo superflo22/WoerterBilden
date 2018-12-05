@@ -1,24 +1,34 @@
-
 public class WortListe {
-	Wort[] dasWort = new Wort[2];
+	
+	String[] Woerter = {"Haus","Maus","Feuer"};
+	Wort[] alleWoerter = new Wort[20];
 	int GewaehltesWort;
+
 	
-	WortListe(){
+	WortListe(int SpielZustand){
+		GewaehltesWort =0;
 		
+		
+		for(int i = 0; i<Woerter.length;i++){
+			if(SpielZustand==1)
+				alleWoerter [i]= new WortMitLücke(Woerter[i]);
+			else
+				alleWoerter [i]= new WortPuzzle(Woerter[i]);
+		}
+
 	}
-	
-	String auswaehlenWort(){
-		GewaehltesWort=0;
-		
-		return dasWort[GewaehltesWort].gibBuchstaben();
+
+	String auswaehlenWort() {
+		GewaehltesWort = 0;
+
+		return alleWoerter[GewaehltesWort].gibBuchstaben();
 	}
-	
-	String gibAufgabe(){
-		String dieBuchstaben="";
-		
-		dieBuchstaben = dasWort[GewaehltesWort].gibBuchstaben();
-		
-		
+
+	String gibAufgabe() {
+		String dieBuchstaben = "";
+
+		dieBuchstaben = alleWoerter[GewaehltesWort].gibBuchstaben();
+
 		return dieBuchstaben;
 	}
 }

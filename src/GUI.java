@@ -18,10 +18,13 @@ public class GUI {
 	private JFrame frame;
 	private JTextField tfName1;
 	private JTextField tfName2;
-	Steuerung steuerung;
+	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField textAntwort;
 
+	
+	private Steuerung steuerung;
+	JLabel lblAktSpieler, lblAufgabe;
 	/**
 	 * Launch the application.
 	 */
@@ -43,9 +46,15 @@ public class GUI {
 	 */
 	public GUI() {
 		initialize();
-		steuerung = new Steuerung();
+		steuerung = new Steuerung(this);
 
 	}
+	void updateLbL(String aktuelerSpieler, String wortAufgabe){
+		lblAktSpieler.setText(aktuelerSpieler);
+		lblAufgabe.setText(wortAufgabe);
+	}
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -142,40 +151,31 @@ public class GUI {
 		JButton btnNewButton = new JButton("Starte neues Spiel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), this.getModi()
-
-				);
-			}
-
-			private int getModi() {
-				if (rdbtnBuchstabenfllen.isSelected())
-					return 1;
-				else
-					return 0;
+				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), rdbtnBuchstabenfllen.isSelected());
 			}
 		});
 		btnNewButton.setBounds(10, 224, 444, 31);
 		panel.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(20, 300, 46, 14);
-		frame.getContentPane().add(lblNewLabel_1);
+		lblAktSpieler = new JLabel("");
+		lblAktSpieler.setBounds(20, 300, 46, 14);
+		frame.getContentPane().add(lblAktSpieler);
 		
 		JLabel lblIstAmZug = new JLabel("ist am Zug");
 		lblIstAmZug.setBounds(162, 300, 84, 14);
 		frame.getContentPane().add(lblIstAmZug);
 		
-		JLabel lblAufgabe = new JLabel("Aufgabe:");
-		lblAufgabe.setBounds(20, 351, 46, 14);
-		frame.getContentPane().add(lblAufgabe);
+		JLabel lbltxtAufgabe = new JLabel("Aufgabe:");
+		lbltxtAufgabe.setBounds(20, 351, 80, 14);
+		frame.getContentPane().add(lbltxtAufgabe);
 		
 		JLabel lblBildeEinWort = new JLabel("Bilde ein Wort aus:");
 		lblBildeEinWort.setBounds(30, 376, 125, 14);
 		frame.getContentPane().add(lblBildeEinWort);
 		
-		JLabel lblWort = new JLabel("WortLol");
-		lblWort.setBounds(162, 376, 46, 14);
-		frame.getContentPane().add(lblWort);
+		lblAufgabe = new JLabel("sdg");
+		lblAufgabe.setBounds(162, 376, 46, 14);
+		frame.getContentPane().add(lblAufgabe);
 		
 		JLabel lblDeineLsung = new JLabel("Deine L\u00F6sung ");
 		lblDeineLsung.setBounds(31, 431, 90, 14);
