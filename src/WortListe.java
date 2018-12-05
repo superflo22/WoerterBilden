@@ -26,9 +26,10 @@ public class WortListe {
 
 	String gibAufgabe() {
 		String dieBuchstaben = "";
-
+GewaehltesWort++;
 		dieBuchstaben = alleWoerter[GewaehltesWort].gibBuchstaben();
 
+		
 		return dieBuchstaben;
 	}
 }

@@ -16,18 +16,14 @@ import javax.swing.border.Border;
 public class GUI {
 
 	private JFrame frame;
-	private JTextField tfName1;
-	private JTextField tfName2;
-	
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField textAntwort;
-
 	
 	private Steuerung steuerung;
-	JLabel lblAktSpieler, lblAufgabe;
-	/**
-	 * Launch the application.
-	 */
+	private JTextField tfName1;
+	private JTextField tfName2;
+	private JTextField textAntwort;
+	private JLabel lblAktSpieler, lblAufgabe;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,24 +37,17 @@ public class GUI {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public GUI() {
 		initialize();
 		steuerung = new Steuerung(this);
 
 	}
+	
 	void updateLbL(String aktuelerSpieler, String wortAufgabe){
 		lblAktSpieler.setText(aktuelerSpieler);
 		lblAufgabe.setText(wortAufgabe);
 	}
 	
-	
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 500, 450);
@@ -79,10 +68,22 @@ public class GUI {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		panel_1.setBorder(blackline);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(239, 11, 215, 134);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		panel_2.setBorder(blackline);
+	
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(10, 156, 444, 57);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		panel_3.setBorder(blackline);
 
-		JLabel lblNewLabel = new JLabel("Spieler 1");
-		lblNewLabel.setBounds(5, 5, 84, 14);
-		panel_1.add(lblNewLabel);
+		JLabel lblSpieler1 = new JLabel("Spieler 1");
+		lblSpieler1.setBounds(5, 5, 84, 14);
+		panel_1.add(lblSpieler1);
 
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(15, 35, 46, 14);
@@ -93,46 +94,36 @@ public class GUI {
 		panel_1.add(tfName1);
 		tfName1.setColumns(10);
 
-		JLabel lblPunkte = new JLabel("Punkte");
-		lblPunkte.setBounds(15, 85, 46, 14);
-		panel_1.add(lblPunkte);
+		JLabel lblPunkte_1 = new JLabel("Punkte");
+		lblPunkte_1.setBounds(15, 85, 46, 14);
+		panel_1.add(lblPunkte_1);
 
 		JLabel lblPunkte1 = new JLabel("0");
 		lblPunkte1.setBounds(93, 85, 46, 14);
 		panel_1.add(lblPunkte1);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(239, 11, 215, 134);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
-		panel_2.setBorder(blackline);
+		
+		JLabel lblSpieler2 = new JLabel("Spieler 2");
+		lblSpieler2.setBounds(5, 5, 94, 14);
+		panel_2.add(lblSpieler2);
 
-		JLabel lblSpieler = new JLabel("Spieler 2");
-		lblSpieler.setBounds(5, 5, 94, 14);
-		panel_2.add(lblSpieler);
-
-		JLabel label = new JLabel("Name");
-		label.setBounds(15, 35, 46, 14);
-		panel_2.add(label);
+		JLabel lblName2 = new JLabel("Name");
+		lblName2.setBounds(15, 35, 46, 14);
+		panel_2.add(lblName2);
 
 		tfName2 = new JTextField();
 		tfName2.setColumns(10);
 		tfName2.setBounds(70, 32, 135, 20);
 		panel_2.add(tfName2);
 
-		JLabel label_1 = new JLabel("Punkte");
-		label_1.setBounds(15, 85, 46, 14);
-		panel_2.add(label_1);
+		JLabel lblPunkte_2 = new JLabel("Punkte");
+		lblPunkte_2.setBounds(15, 85, 46, 14);
+		panel_2.add(lblPunkte_2);
 
 		JLabel lblPunkte2 = new JLabel("0");
 		lblPunkte2.setBounds(93, 85, 46, 14);
 		panel_2.add(lblPunkte2);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 156, 444, 57);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
-		panel_3.setBorder(blackline);
 
 		JLabel lblAusahlTyp = new JLabel("Auswahl Typ");
 		lblAusahlTyp.setBounds(10, 11, 80, 14);
@@ -189,7 +180,10 @@ public class GUI {
 		JButton btnFertig = new JButton("Fertig");
 		btnFertig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				steuerung.zugFertig(textAntwort.getText());
+				String antwort;
+				antwort = textAntwort.getText();
+				textAntwort.setText("");
+				steuerung.zugFertig(antwort);
 			}
 		});
 		btnFertig.setBounds(291, 370, 89, 23);
