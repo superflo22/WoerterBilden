@@ -1,8 +1,8 @@
 public class WortMitLücke extends Wort {
 
 	WortMitLücke(String wort) {
-		super();
-		this.aWort = wort;
+		
+		aWort = wort;
 	}
 
 	String gibBuchstaben() {

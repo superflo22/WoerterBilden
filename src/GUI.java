@@ -129,12 +129,12 @@ public class GUI {
 		lblAusahlTyp.setBounds(10, 11, 80, 14);
 		panel_3.add(lblAusahlTyp);
 
-		JRadioButton rdbtnLckenFllen = new JRadioButton("1: L\u00FCcken f\u00FCllen");
+		final JRadioButton rdbtnLckenFllen = new JRadioButton("1: L\u00FCcken f\u00FCllen");
 		buttonGroup.add(rdbtnLckenFllen);
 		rdbtnLckenFllen.setBounds(20, 32, 168, 23);
 		panel_3.add(rdbtnLckenFllen);
 
-		final JRadioButton rdbtnBuchstabenfllen = new JRadioButton("2: Buchstabenf\u00FCllen");
+		JRadioButton rdbtnBuchstabenfllen = new JRadioButton("2: Buchstabenf\u00FCllen");
 		buttonGroup.add(rdbtnBuchstabenfllen);
 		rdbtnBuchstabenfllen.setBounds(230, 32, 155, 23);
 		panel_3.add(rdbtnBuchstabenfllen);
@@ -142,7 +142,11 @@ public class GUI {
 		JButton btnNewButton = new JButton("Starte neues Spiel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), rdbtnBuchstabenfllen.isSelected());
+				int modi;
+				if(rdbtnLckenFllen.isSelected())modi=1;
+				else modi=2; 
+				
+				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), modi);
 			}
 		});
 		btnNewButton.setBounds(10, 224, 444, 31);
@@ -165,7 +169,7 @@ public class GUI {
 		frame.getContentPane().add(lblBildeEinWort);
 		
 		lblAufgabe = new JLabel("Aufgabe");
-		lblAufgabe.setBounds(152, 345, 46, 14);
+		lblAufgabe.setBounds(152, 345, 171, 14);
 		frame.getContentPane().add(lblAufgabe);
 		
 		JLabel lblDeineLsung = new JLabel("Deine L\u00F6sung ");

@@ -1,9 +1,8 @@
-
 public class WortPuzzle extends Wort {
 
 	WortPuzzle(String wort) {
-		super();
-		this.aWort = wort;
+		
+		aWort = wort;
 	}
 	
 	String gibBuchstaben() {

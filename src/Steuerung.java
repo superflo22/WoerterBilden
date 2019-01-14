@@ -1,4 +1,3 @@
-
 public class Steuerung {
 
 	Spieler[] spieler = new Spieler[2];
@@ -10,26 +9,17 @@ public class Steuerung {
 		this.gui = gui;
 	}
 
-	void gedruecktStart(String name1, String name2, int Modi) {
-		spieler[0] = new Spieler(name1);
-		spieler[1] = new Spieler(name2);
 
-		aZustand = Modi;
-
-	}
 
 	void Spielroutine() {
 
-		gui.updateLbL(String.valueOf(aktiverSpieler), wordlist.gibAufgabe());
+		gui.updateLbL(spieler[aktiverSpieler].getName(), wordlist.gibAufgabe());
 
 	}
 
 	void zugFertig(String Antwort) {
-		boolean richtig;
-		richtig = wordlist.alleWoerter[wordlist.GewaehltesWort].pruefeLoesung(Antwort);
-
-		if (richtig) {
-
+		if (wordlist.alleWoerter[wordlist.GewaehltesWort].pruefeLoesung(Antwort)) {
+			spieler[aktiverSpieler].gibPunkte();
 		} else {//Anderer Spieler ist dran
 			if (aktiverSpieler == 2) {
 				aktiverSpieler = 1;
@@ -37,18 +27,17 @@ public class Steuerung {
 				aktiverSpieler++;
 			}
 		}
+		Spielroutine();
 	}
 
-	public void gedruecktStart(String name, String name2, boolean Modi) {
+	public void gedruecktStart(String name, String name2, int Modi) {
 		spieler[0] = new Spieler(name);
 		System.out.println(name);
 		spieler[1] = new Spieler(name2);
 		System.out.println(name2);
 
-		if (Modi)
-			aZustand = 2;
-		else
-			aZustand = 1;
+		aZustand = Modi;
+		System.out.println(Modi);
 
 		wordlist = new WortListe(aZustand);
 		Spielroutine();

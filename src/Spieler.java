@@ -1,4 +1,3 @@
-
 public class Spieler {
 	String aName;
 	int aPunkte;
@@ -12,6 +11,9 @@ public class Spieler {
 	
 	int getPunkte() {
 		return aPunkte;
+	}
+	void gibPunkte() {
+		aPunkte++;
 	}
 	
 }
