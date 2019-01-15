@@ -4,7 +4,6 @@ public abstract class Wort {
 	int aStatus;
 
 	Wort() {
-
 	}
 
 	void stzeStausAufNie() {
@@ -15,7 +14,10 @@ public abstract class Wort {
 	}
 
 	boolean pruefeLoesung(String Eingabe) {
-		if (Eingabe == aWort) {
+		System.out.println("Eingabe:" + Eingabe);
+		System.out.println("aWort:" + aWort);
+
+		if (Eingabe.equals(aWort)) {
 			System.out.println("Wort richtig");
 			return true;
 		} else {

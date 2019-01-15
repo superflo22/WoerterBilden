@@ -9,23 +9,18 @@ public class Steuerung {
 		this.gui = gui;
 	}
 
-
-
 	void Spielroutine() {
-
 		gui.updateLbL(spieler[aktiverSpieler].getName(), wordlist.gibAufgabe());
-
 	}
 
 	void zugFertig(String Antwort) {
 		if (wordlist.alleWoerter[wordlist.GewaehltesWort].pruefeLoesung(Antwort)) {
 			spieler[aktiverSpieler].gibPunkte();
-		} else {//Anderer Spieler ist dran
-			if (aktiverSpieler == 2) {
-				aktiverSpieler = 1;
-			} else {
+		} else {
+			if (aktiverSpieler == 1) {
+				aktiverSpieler = 0;
+			} else
 				aktiverSpieler++;
-			}
 		}
 		Spielroutine();
 	}
