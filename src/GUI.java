@@ -46,7 +46,7 @@ public class GUI {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.GRAY);
 		frame.getContentPane().setForeground(Color.WHITE);
-		frame.setBounds(100, 100, 500, 450);
+		frame.setBounds(100, 100, 500, 382);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -55,7 +55,7 @@ public class GUI {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
-		panel.setBounds(10, 11, 464, 269);
+		panel.setBounds(10, 11, 464, 219);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.setBorder(blackline);
@@ -153,36 +153,36 @@ public class GUI {
 				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), modi);
 			}
 		});
-		btnNewButton.setBounds(10, 224, 444, 31);
+		btnNewButton.setBounds(10, 178, 444, 31);
 		panel.add(btnNewButton);
 
 		lblAktSpieler = new JLabel("SpielerName");
-		lblAktSpieler.setBounds(94, 300, 84, 14);
+		lblAktSpieler.setBounds(94, 241, 84, 14);
 		frame.getContentPane().add(lblAktSpieler);
 
 		JLabel lblIstAmZug = new JLabel("am Zug");
-		lblIstAmZug.setBounds(208, 300, 84, 14);
+		lblIstAmZug.setBounds(208, 241, 84, 14);
 		frame.getContentPane().add(lblIstAmZug);
 
 		JLabel lbltxtAufgabe = new JLabel("Aufgabe:");
-		lbltxtAufgabe.setBounds(10, 320, 80, 14);
+		lbltxtAufgabe.setBounds(10, 261, 80, 14);
 		frame.getContentPane().add(lbltxtAufgabe);
 
 		JLabel lblBildeEinWort = new JLabel("Bilde ein Wort aus:");
-		lblBildeEinWort.setBounds(20, 345, 108, 14);
+		lblBildeEinWort.setBounds(20, 286, 108, 14);
 		frame.getContentPane().add(lblBildeEinWort);
 
 		lblAufgabe = new JLabel("WortAufgabe");
-		lblAufgabe.setBounds(138, 345, 148, 14);
+		lblAufgabe.setBounds(138, 286, 148, 14);
 		frame.getContentPane().add(lblAufgabe);
 
 		JLabel lblDeineLsung = new JLabel("Deine L\u00F6sung:");
-		lblDeineLsung.setBounds(20, 374, 95, 14);
+		lblDeineLsung.setBounds(20, 315, 95, 14);
 		frame.getContentPane().add(lblDeineLsung);
 
 		textAntwort = new JTextField();
 		textAntwort.setBackground(Color.LIGHT_GRAY);
-		textAntwort.setBounds(115, 371, 160, 20);
+		textAntwort.setBounds(115, 312, 160, 20);
 		frame.getContentPane().add(textAntwort);
 		textAntwort.setColumns(10);
 
@@ -195,11 +195,11 @@ public class GUI {
 				steuerung.zugFertig(antwort);
 			}
 		});
-		btnFertig.setBounds(291, 370, 89, 23);
+		btnFertig.setBounds(291, 311, 89, 23);
 		frame.getContentPane().add(btnFertig);
 
 		JLabel lblSpieler_1 = new JLabel("Gerade ist");
-		lblSpieler_1.setBounds(20, 300, 85, 14);
+		lblSpieler_1.setBounds(20, 241, 85, 14);
 		frame.getContentPane().add(lblSpieler_1);
 
 	}
