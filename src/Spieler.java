@@ -1,21 +1,20 @@
 public class Spieler {
-	String aName;
-	int aPunkte;
+	private String aName;
+	private int aPunkte;
 
 	Spieler(String name) {
 		aName = name;
 	}
 
-	String getName() {
+	String gibName() {
 		return aName;
 	}
 
-	int getPunkte() {
+	int gibPunkte() {
 		return aPunkte;
 	}
 
-	void gibPunkte() {
-		aPunkte++;
+	void addPunkte(int Punkte) {
+		aPunkte= aPunkte+Punkte;
 	}
-
 }

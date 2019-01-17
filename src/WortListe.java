@@ -8,7 +8,7 @@ public class WortListe {
 
 	ArrayList woerter = new ArrayList();
 	String wort;
-	int GewaehltesWort;
+	int GewaehltesWort = 0;
 
 	WortListe(int SpielZustand) {
 		try {
@@ -25,29 +25,28 @@ public class WortListe {
 			System.out.println(e.getMessage());
 		}
 
-		GewaehltesWort = 0;
 		alleWoerter = new Wort[woerter.size()];
 
 		for (int i = 0; i < woerter.size(); i++) {
 			if (SpielZustand == 1) {
 				alleWoerter[i] = new WortMitLücke((String) woerter.get(i));
-			} else
+			} else if (SpielZustand == 2)
 				alleWoerter[i] = new WortPuzzle((String) woerter.get(i));
 
-			System.out.println(alleWoerter[i].aWort);
+			System.out.println(alleWoerter[i].gibWort());
 		}
 	}
 
-	String auswaehlenWort() {
-		GewaehltesWort = 0;
+	String gibAufgabe() {
+		System.out.println(alleWoerter[GewaehltesWort].gibBuchstaben());
 
 		return alleWoerter[GewaehltesWort].gibBuchstaben();
 	}
 
-	String gibAufgabe() {
-		GewaehltesWort = (int) (Math.random() * (double) woerter.size());
+	void auswaehlenWort() {
+		do {
+			GewaehltesWort = (int) (Math.random() * (double) woerter.size());
+		} while (alleWoerter[GewaehltesWort].gibStatus() == 1);
 		System.out.println(GewaehltesWort);
-
-		return alleWoerter[GewaehltesWort].gibBuchstaben();
 	}
 }

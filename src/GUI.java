@@ -9,11 +9,14 @@ import javax.swing.border.Border;
 public class GUI {
 
 	private JFrame frame;
+	private JPanel panel_3, panel_4;
+
+	private JRadioButton rdbtnLckenFllen, rdbtnBuchstabenfllen;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	private Steuerung steuerung;
 	private JTextField tfName1, tfName2, textAntwort;
-	private JLabel lblAktSpieler, lblAufgabe, lblPunkte1, lblPunkte2;
+	private JLabel lblAktSpieler, lblAufgabe, lblPunkte1, lblPunkte2, lblMeldung;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -21,6 +24,7 @@ public class GUI {
 				try {
 					GUI window = new GUI();
 					window.frame.setVisible(true);
+					window.frame.setTitle("Wörter bilden");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,12 +38,52 @@ public class GUI {
 
 	}
 
-	void updateLbL(String aktuelerSpieler, String wortAufgabe) {
-		lblAktSpieler.setText(aktuelerSpieler);
-		lblAufgabe.setText(wortAufgabe);
-		lblPunkte1.setText(String.valueOf(steuerung.spieler[0].getPunkte()));
-		lblPunkte2.setText(String.valueOf(steuerung.spieler[1].getPunkte()));
+	private void clickStart() {
+		steuerung.gedruecktStart(tfName1.getText(), tfName2.getText());
+	}
+	
+	private void clickFertig() {
+		steuerung.gedruecktFertig(textAntwort.getText());
+	}
+	private void clickOk() {
+		panel_3.setVisible(true);
+		panel_4.setVisible(false);
+		steuerung.gedruecktOK();
+	}
+	
+	int gibSpielTyp() {
+		final int modi;
+		if (rdbtnLckenFllen.isSelected())modi = 1;
+		else if (rdbtnBuchstabenfllen.isSelected())modi = 2;
+		else modi = 0;
 
+		return modi;
+	}
+	String leseLoesung() {
+		return textAntwort.getText();
+	}
+
+	void anzeigenPunkte(int pPktSpieler1, int pPktSpieler2) {
+		lblPunkte1.setText(String.valueOf(pPktSpieler1));
+		lblPunkte2.setText(String.valueOf(pPktSpieler2));
+	}
+
+	void anzeigenAmZug(String aktuelerSpieler) {
+		lblAktSpieler.setText(aktuelerSpieler);
+	}
+	void anzeigenMeldung(String Meldung) {
+		panel_3.setVisible(false);
+		panel_4.setVisible(true);
+
+		lblMeldung.setText(Meldung);
+	}
+
+	void anzeigenAufgabe(String wortAufgabe) {
+		lblAufgabe.setText(wortAufgabe);
+	}
+
+	void loescheLoeseung() {
+		textAntwort.setText("");
 	}
 
 	private void initialize() {
@@ -73,13 +117,6 @@ public class GUI {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setBorder(blackline);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.GRAY);
-		panel_3.setBounds(10, 110, 444, 57);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
-		panel_3.setBorder(blackline);
 
 		JLabel lblSpieler1 = new JLabel("Spieler 1");
 		lblSpieler1.setBounds(5, 5, 84, 14);
@@ -125,43 +162,65 @@ public class GUI {
 		lblPunkte2.setBounds(93, 60, 46, 14);
 		panel_2.add(lblPunkte2);
 
+		panel_4 = new JPanel();
+		panel_4.setVisible(false);
+
+		panel_3 = new JPanel();
+		panel_3.setBounds(10, 112, 444, 97);
+		panel.add(panel_3);
+		panel_3.setBackground(Color.GRAY);
+		panel_3.setBorder(blackline);
+		panel_3.setLayout(null);
+
 		JLabel lblAusahlTyp = new JLabel("Auswahl Typ");
 		lblAusahlTyp.setBounds(10, 11, 80, 14);
 		panel_3.add(lblAusahlTyp);
 
-		final JRadioButton rdbtnLckenFllen = new JRadioButton("1: L\u00FCcken f\u00FCllen");
+		rdbtnLckenFllen = new JRadioButton("1: L\u00FCcken f\u00FCllen");
+		rdbtnLckenFllen.setBounds(20, 32, 150, 23);
 		rdbtnLckenFllen.setBackground(Color.LIGHT_GRAY);
 		buttonGroup.add(rdbtnLckenFllen);
-		rdbtnLckenFllen.setBounds(20, 32, 150, 23);
 		panel_3.add(rdbtnLckenFllen);
 
-		JRadioButton rdbtnBuchstabenfllen = new JRadioButton("2: Buchstabenf\u00FCllen");
+		rdbtnBuchstabenfllen = new JRadioButton("2: Buchstabenpuzzle");
+		rdbtnBuchstabenfllen.setBounds(250, 32, 150, 23);
 		rdbtnBuchstabenfllen.setBackground(Color.LIGHT_GRAY);
 		buttonGroup.add(rdbtnBuchstabenfllen);
-		rdbtnBuchstabenfllen.setBounds(250, 32, 150, 23);
 		panel_3.add(rdbtnBuchstabenfllen);
 
 		JButton btnNewButton = new JButton("Starte neues Spiel");
+		btnNewButton.setBounds(0, 66, 444, 31);
+		panel_3.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int modi;
-				if (rdbtnLckenFllen.isSelected())
-					modi = 1;
-				else
-					modi = 2;
-
-				steuerung.gedruecktStart(tfName1.getText(), tfName2.getText(), modi);
+				clickStart();
 			}
 		});
-		btnNewButton.setBounds(10, 178, 444, 31);
-		panel.add(btnNewButton);
+		panel_4.setBackground(Color.GRAY);
+		panel_4.setBounds(10, 112, 444, 55);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
+
+		lblMeldung = new JLabel("Meldung...");
+		lblMeldung.setBounds(30, 11, 311, 33);
+		panel_4.add(lblMeldung);
+		lblMeldung.setBorder(blackline);
+
+		JButton btnOK = new JButton("ok");
+		btnOK.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clickOk();
+			}
+		});
+		btnOK.setBounds(345, 16, 89, 23);
+		panel_4.add(btnOK);
 
 		lblAktSpieler = new JLabel("SpielerName");
-		lblAktSpieler.setBounds(94, 241, 84, 14);
+		lblAktSpieler.setBounds(20, 241, 84, 14);
 		frame.getContentPane().add(lblAktSpieler);
 
-		JLabel lblIstAmZug = new JLabel("am Zug");
-		lblIstAmZug.setBounds(208, 241, 84, 14);
+		JLabel lblIstAmZug = new JLabel("ist am Zug");
+		lblIstAmZug.setBounds(148, 241, 84, 14);
 		frame.getContentPane().add(lblIstAmZug);
 
 		JLabel lbltxtAufgabe = new JLabel("Aufgabe:");
@@ -189,18 +248,10 @@ public class GUI {
 		JButton btnFertig = new JButton("Fertig");
 		btnFertig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String antwort;
-				antwort = textAntwort.getText();
-				textAntwort.setText("");
-				steuerung.zugFertig(antwort);
+				clickFertig();
 			}
 		});
 		btnFertig.setBounds(291, 311, 89, 23);
 		frame.getContentPane().add(btnFertig);
-
-		JLabel lblSpieler_1 = new JLabel("Gerade ist");
-		lblSpieler_1.setBounds(20, 241, 85, 14);
-		frame.getContentPane().add(lblSpieler_1);
-
 	}
 }

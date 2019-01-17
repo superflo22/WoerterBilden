@@ -1,12 +1,14 @@
 public class WortMitLücke extends Wort {
 
 	WortMitLücke(String wort) {
-		aWort = wort;
+		super.setaWort(wort); 
 	}
 
 	String gibBuchstaben() {
-		String Lücke = aWort;
-
-		return Lücke;
+		char[] characters = super.gibWort().toCharArray();
+		int luecke = (int) (Math.random() * characters.length);
+		characters[luecke] = '_';
+		String wort = String.valueOf(characters);
+		return wort;
 	}
 }
