@@ -26,7 +26,7 @@ public class Steuerung {
 	}
 
 	public void gedruecktFertig(String Antwort) {
-		if (!Antwort.isBlank())
+		if (!Antwort.isEmpty())
 			tries++;
 		System.out.println(tries);
 
