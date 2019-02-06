@@ -4,7 +4,7 @@ public class Steuerung {
 
 	private Spieler[] spieler = new Spieler[2];
 	private WortListe wordlist;
-	private int tries, aktiverSpieler;
+	private int aZustand, aktiverSpieler;
 
 	Steuerung(GUI gui) {
 		this.gui = gui;
@@ -25,29 +25,31 @@ public class Steuerung {
 		}
 	}
 
-	public void gedruecktFertig(String Antwort) {
-		if (!Antwort.isBlank())
-			tries++;
-		System.out.println(tries);
+	public void gedruecktFertig() {
+		String Antwort = gui.leseLoesung();
+		
+		if (!Antwort.isEmpty())
+			aZustand++;
+		System.out.println(aZustand);
 
 		if (wordlist.alleWoerter[wordlist.GewaehltesWort].pruefeLoesung(Antwort)) {
-			if (tries < 2) {
+			if (aZustand < 2) {
 				spieler[aktiverSpieler].addPunkte(5);
 				gui.anzeigenMeldung("Prima, das ist richtig! (5 Punkte)");
-				tries = 0;
+				aZustand = 0;
 			}
-			if (tries == 2) {
+			if (aZustand == 2) {
 				spieler[aktiverSpieler].addPunkte(1);
 				gui.anzeigenMeldung("Gut, das ist jetzt richtig! (1 Punkt)");
-				tries = 0;
+				aZustand = 0;
 			}
 
 			wordlist.alleWoerter[wordlist.GewaehltesWort].setzeStatus(1);
 		} else {
-			if (tries < 2) {
+			if (aZustand < 2) {
 				gui.anzeigenMeldung("Falsch, aber du hast noch eine Chance!");
 			}
-			if (tries == 2) {
+			if (aZustand == 2) {
 				gui.anzeigenMeldung("Leider auch falasch. → Spielerwechsel");
 				wechsleSpieler();
 			}
@@ -58,7 +60,7 @@ public class Steuerung {
 
 	public void gedruecktOK() {
 		gui.loescheLoeseung();
-		if (tries != 1)
+		if (aZustand != 1)
 			stelleAufgabe();
 	}
 
@@ -74,6 +76,6 @@ public class Steuerung {
 			aktiverSpieler = 0;
 		} else
 			aktiverSpieler++;
-		tries = 0;
+		aZustand = 0;
 	}
 }

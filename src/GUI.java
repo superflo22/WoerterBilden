@@ -25,6 +25,7 @@ public class GUI {
 					GUI window = new GUI();
 					window.frame.setVisible(true);
 					window.frame.setTitle("Wörter bilden");
+					window.frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,7 +44,7 @@ public class GUI {
 	}
 	
 	private void clickFertig() {
-		steuerung.gedruecktFertig(textAntwort.getText());
+		steuerung.gedruecktFertig();
 	}
 	private void clickOk() {
 		panel_3.setVisible(true);
